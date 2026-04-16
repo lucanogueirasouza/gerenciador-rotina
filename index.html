@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Rotina</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Persistent UI (Header + Water) - Hidden on Splash Screen -->
+        <div id="global-ui" class="hidden">
+            <header>
+                <h1>Gerenciador de Rotina</h1>
+                <p id="current-date"></p>
+            </header>
+
+            <section class="water-tracker">
+                <div class="water-header">
+                    <div class="water-title-group">
+                        <h3>Hidratação</h3>
+                        <div class="goal-group">
+                            <span>Meta:</span>
+                            <input type="number" id="water-goal-input" value="2000" step="500">
+                            <span>ml</span>
+                        </div>
+                    </div>
+                    <span id="water-progress-text">0 / 2000 ml</span>
+                </div>
+                
+                <div class="water-body">
+                    <div class="water-progress-bar">
+                        <div id="water-fill" class="water-fill"></div>
+                    </div>
+                    <div class="water-presets">
+                        <button class="preset-btn" data-amount="250">+250ml</button>
+                        <button class="preset-btn" data-amount="500">+500ml</button>
+                        <button class="preset-btn" data-amount="1000">+1L</button>
+                        <button id="reset-water" class="icon-btn" title="Resetar Água">🔄</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Screen 1: Splash (Immersive) -->
+        <section id="screen-splash" class="screen">
+            <div class="splash-content">
+                <h2>Olá! 👋</h2>
+                <h1>Pronto para começar o dia?</h1>
+                <button id="start-day-btn" class="massive-btn">Sim, vamos nessa!</button>
+                <div class="splash-footer">
+                    <p id="splash-date"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 2: Selection & Custom Tasks -->
+        <section id="screen-selection" class="screen hidden">
+            <div class="panel">
+                <h2>O que temos para hoje?</h2>
+                <p class="subtitle">Selecione suas tarefas e adicione novas se precisar.</p>
+                
+                <div id="activity-selectors" class="selectors-grid"></div>
+
+                <div class="custom-tasks-box">
+                    <h3>Tarefa Adicional</h3>
+                    <div class="input-row">
+                        <input type="text" id="custom-task-name" placeholder="Ex: Mercado">
+                        <input type="number" id="custom-task-duration" placeholder="Min" min="5">
+                        <button id="add-custom-btn" class="square-btn">+</button>
+                    </div>
+                    <ul id="custom-task-list"></ul>
+                </div>
+
+                <div class="gym-level-box">
+                    <label for="gym-level">Nível do Treino:</label>
+                    <div class="modern-select">
+                        <select id="gym-level">
+                            <option value="basic">Básico</option>
+                            <option value="intermediate" selected>Intermediário</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                    </div>
+                </div>
+
+                <button id="generate-btn" class="primary-btn">Gerar Rotina em Tempo Real</button>
+            </div>
+        </section>
+
+        <!-- Screen 3: Routine Checklist -->
+        <main id="screen-routine" class="screen hidden">
+            <div class="routine-header">
+                <div class="titles">
+                    <h2>Sua Rotina</h2>
+                    <p id="routine-status"></p>
+                </div>
+                <div class="header-actions">
+                    <button id="recalculate-btn" class="action-btn">Recalcular</button>
+                    <button id="reset-btn" class="text-btn">Redefinir</button>
+                </div>
+            </div>
+            <div id="routine-checklist"></div>
+
+            <section id="gym-training" class="gym-section hidden">
+                <h2>Treino do Dia</h2>
+                <div id="training-content"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
